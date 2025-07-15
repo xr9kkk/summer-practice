@@ -1,7 +1,4 @@
-﻿using summer_practice;
-using System.Drawing;
-
-namespace summer_practice
+﻿namespace summer_practice
 {
     public class FlagObject : PlanetObject
     {
