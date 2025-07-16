@@ -6,22 +6,25 @@ namespace summer_practice.ObjectTypes
     {
         public override string ObjectType => "Tree";
 
-        public override void Draw(Graphics g, Point center)
+        public override void Draw(Graphics g, Point center, int radius)
         {
-            double angle = Math.Atan2(Position.Y - center.Y, Position.X - center.X);
+            // Вычисляем позицию по углу
+            Point pos = new(
+                center.X + (int)(radius * Math.Cos(AngleRadians)),
+                center.Y + (int)(radius * Math.Sin(AngleRadians))
+            );
 
-            g.TranslateTransform(Position.X, Position.Y);
-            g.RotateTransform((float)(angle * 180 / Math.PI + 90));
+            // Поворот объекта к центру
+            g.TranslateTransform(pos.X, pos.Y);
+            g.RotateTransform((float)(AngleRadians * 180 / Math.PI + 90));
 
-            // Ствол
-            using var trunkBrush = new SolidBrush(Color.SaddleBrown);
-            g.FillEllipse(trunkBrush, -4, 0, 8, -20);
-
-            // Крона — 3 "шара" (листья)
-            using var leafBrush = new SolidBrush(Color.ForestGreen);
-            g.FillEllipse(leafBrush, -12, -35, 24, 20);   // центральная
-            g.FillEllipse(leafBrush, -18, -30, 18, 18);   // левая
-            g.FillEllipse(leafBrush, 0, -30, 18, 18);     // правая
+            // Рисуем как раньше
+            using var trunk = new SolidBrush(Color.SaddleBrown);
+            g.FillEllipse(trunk, -4, 0, 8, -20);
+            using var leaf = new SolidBrush(Color.ForestGreen);
+            g.FillEllipse(leaf, -12, -35, 24, 20);
+            g.FillEllipse(leaf, -18, -30, 18, 18);
+            g.FillEllipse(leaf, 0, -30, 18, 18);
 
             g.ResetTransform();
         }

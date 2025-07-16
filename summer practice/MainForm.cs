@@ -35,7 +35,7 @@ namespace summer_practice
             rotationTimer.Interval = 100; // мс
             rotationTimer.Tick += (s, e) =>
             {
-                renderer.RotatePlanet(1); // на 1 градус
+                renderer.Rotate(1f); // на 1 градус
                 pictureBoxPlanet.Invalidate();
             };
             rotationTimer.Start();
@@ -56,24 +56,16 @@ namespace summer_practice
             Point center = new(pictureBoxPlanet.Width / 2, pictureBoxPlanet.Height / 2);
             int radius = Math.Min(pictureBoxPlanet.Width, pictureBoxPlanet.Height) / 3;
 
-            // Разница координат
             double dx = e.X - center.X;
             double dy = e.Y - center.Y;
             double distance = Math.Sqrt(dx * dx + dy * dy);
 
-            // Условие: клик примерно по окружности
-            if (Math.Abs(distance - radius) <= 20) // можно настроить допуск
+            // Проверяем, что клик был рядом с окружностью
+            if (Math.Abs(distance - radius) <= 20)
             {
-                // Вычисляем угол
-                double angle = Math.Atan2(dy, dx);
+                // Просто передаём клик и центр — внутри Create(...) уже всё вычисляется
+                var obj = ObjectFactory.Create(currentAddType, e.Location, center);
 
-                // Находим точку на окружности по этому углу
-                Point posOnCircle = new(
-                    center.X + (int)(radius * Math.Cos(angle)),
-                    center.Y + (int)(radius * Math.Sin(angle))
-                );
-
-                var obj = ObjectFactory.Create(currentAddType, posOnCircle);
                 if (obj != null)
                 {
                     renderer.Objects.Add(obj);
@@ -82,7 +74,6 @@ namespace summer_practice
                 }
             }
         }
-
 
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -115,7 +106,11 @@ namespace summer_practice
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 var data = renderer.Objects
-                    .Select(o => new ObjectData { Type = o.ObjectType, Position = o.Position })
+                    .Select(o => new ObjectData
+                    {
+                        Type = o.ObjectType,
+                        AngleRadians = o.AngleRadians
+                    })
                     .ToList();
 
                 File.WriteAllText(saveFileDialog1.FileName, JsonSerializer.Serialize(data));
@@ -127,16 +122,22 @@ namespace summer_practice
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 var json = File.ReadAllText(openFileDialog1.FileName);
-                var data = JsonSerializer.Deserialize<ObjectData[]>(json);
+                var data = JsonSerializer.Deserialize<List<ObjectData>>(json);
 
                 renderer.Objects.Clear();
+
                 foreach (var d in data)
-                    renderer.Objects.Add(ObjectFactory.Create(d.Type, d.Position));
+                {
+                    var obj = ObjectFactory.Create(d.Type, d.AngleRadians);
+                    if (obj != null)
+                        renderer.Objects.Add(obj);
+                }
 
                 pictureBoxPlanet.Invalidate();
                 UpdateLabels();
             }
         }
+
 
         private void radioAdd_CheckedChanged(object sender, EventArgs e)
         {

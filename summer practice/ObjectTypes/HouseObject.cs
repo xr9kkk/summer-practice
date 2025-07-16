@@ -1,4 +1,4 @@
-﻿using summer_practice;
+﻿using System;
 using System.Drawing;
 
 namespace summer_practice
@@ -7,16 +7,19 @@ namespace summer_practice
     {
         public override string ObjectType => "House";
 
-        public override void Draw(Graphics g, Point center)
+        public override void Draw(Graphics g, Point center, int radius)
         {
-            double angle = Math.Atan2(Position.Y - center.Y, Position.X - center.X);
+            Point pos = new(
+                center.X + (int)(radius * Math.Cos(AngleRadians)),
+                center.Y + (int)(radius * Math.Sin(AngleRadians))
+            );
 
-            g.TranslateTransform(Position.X, Position.Y);
-            g.RotateTransform((float)(angle * 180 / Math.PI + 90));
+            g.TranslateTransform(pos.X, pos.Y);
+            g.RotateTransform((float)(AngleRadians * 180 / Math.PI + 90));
 
-            // walls
+            // стены
             g.FillRectangle(Brushes.SandyBrown, -10, -15, 20, 15);
-            // roof
+            // крыша
             Point[] roof = new Point[]
             {
                 new Point(-12, -15),

@@ -47,14 +47,15 @@
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
             rotationTimer = new System.Windows.Forms.Timer(components);
+            dateTimePicker1 = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPlanet).BeginInit();
             SuspendLayout();
             // 
             // pictureBoxPlanet
             // 
-            pictureBoxPlanet.Location = new Point(211, 107);
+            pictureBoxPlanet.Location = new Point(139, 107);
             pictureBoxPlanet.Name = "pictureBoxPlanet";
-            pictureBoxPlanet.Size = new Size(351, 323);
+            pictureBoxPlanet.Size = new Size(452, 387);
             pictureBoxPlanet.TabIndex = 0;
             pictureBoxPlanet.TabStop = false;
             // 
@@ -132,7 +133,7 @@
             // 
             // btnChangeColor
             // 
-            btnChangeColor.Location = new Point(367, 440);
+            btnChangeColor.Location = new Point(340, 500);
             btnChangeColor.Name = "btnChangeColor";
             btnChangeColor.Size = new Size(75, 23);
             btnChangeColor.TabIndex = 9;
@@ -179,11 +180,19 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(855, 0);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 14;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 700);
+            ClientSize = new Size(833, 700);
+            Controls.Add(dateTimePicker1);
             Controls.Add(lblFlag);
             Controls.Add(lblAntenna);
             Controls.Add(lblHouse);
@@ -226,5 +235,6 @@
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Timer rotationTimer;
+        private DateTimePicker dateTimePicker1;
     }
 }
