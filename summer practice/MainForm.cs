@@ -21,6 +21,7 @@ namespace summer_practice
             pictureBoxPlanet.Paint += pictureBoxPlanet_Paint;
             pictureBoxPlanet.MouseClick += pictureBoxPlanet_MouseClick;
 
+            
             btnAddTree.Click += (s, e) => SetCurrentAddType("Tree");
             btnAddHouse.Click += (s, e) => SetCurrentAddType("House");
             btnAddFlag.Click += (s, e) => SetCurrentAddType("Flag");
@@ -44,7 +45,20 @@ namespace summer_practice
         private void SetCurrentAddType(string type)
         {
             currentAddType = type;
-            this.Cursor = new Cursor(new MemoryStream(Properties.Resources.cursor));
+
+            Stream cursorStream = type switch
+            {
+                "Tree" => new MemoryStream(Properties.Resources.cursor_tree),
+                "House" => new MemoryStream(Properties.Resources.cursor_house),
+                "Flag" => new MemoryStream(Properties.Resources.cursor_flag),
+                "Antenna" => new MemoryStream(Properties.Resources.cursor_antenna),
+                _ => null
+            };
+
+            if (cursorStream != null)
+                this.Cursor = new Cursor(cursorStream);
+            else
+                this.Cursor = Cursors.Default;
         }
         private void pictureBoxPlanet_Paint(object sender, PaintEventArgs e)
         {
@@ -135,20 +149,6 @@ namespace summer_practice
 
                 pictureBoxPlanet.Invalidate();
                 UpdateLabels();
-            }
-        }
-
-
-        private void radioAdd_CheckedChanged(object sender, EventArgs e)
-        {
-            if (sender is RadioButton rb && rb.Checked)
-            {
-                currentAddType = rb.Tag.ToString();
-                this.Cursor = new Cursor(new MemoryStream(Properties.Resources.cursor));
-            }
-            else
-            {
-                this.Cursor = defaultCursor;
             }
         }
 

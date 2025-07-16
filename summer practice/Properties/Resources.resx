@@ -121,8 +121,17 @@
   <data name="antenna" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\negromkiy-tupoy-gluhoy-udar-po-metallu.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cursor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\net8.0-windows\Cursor\cursor.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cursor_antenna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cursor (4).cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cursor_flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cursor (3).cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cursor_house" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cursor (2).cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cursor_tree" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cursor (1).cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\flag-raising_fyz1-t4d.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -72,9 +72,39 @@ namespace summer_practice.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] cursor {
+        internal static byte[] cursor_antenna {
             get {
-                object obj = ResourceManager.GetObject("cursor", resourceCulture);
+                object obj = ResourceManager.GetObject("cursor_antenna", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] cursor_flag {
+            get {
+                object obj = ResourceManager.GetObject("cursor_flag", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] cursor_house {
+            get {
+                object obj = ResourceManager.GetObject("cursor_house", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] cursor_tree {
+            get {
+                object obj = ResourceManager.GetObject("cursor_tree", resourceCulture);
                 return ((byte[])(obj));
             }
         }
