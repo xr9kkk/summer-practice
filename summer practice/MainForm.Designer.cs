@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             pictureBoxPlanet = new PictureBox();
             btnAddTree = new Button();
             btnAddHouse = new Button();
@@ -45,6 +46,7 @@
             colorDialog1 = new ColorDialog();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
+            rotationTimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBoxPlanet).BeginInit();
             SuspendLayout();
             // 
@@ -118,7 +120,6 @@
             btnSaveState.TabIndex = 7;
             btnSaveState.Text = "save state";
             btnSaveState.UseVisualStyleBackColor = true;
-            //btnSaveState.Click += this.btnSaveState_Click;
             // 
             // btnLoadState
             // 
@@ -224,5 +225,6 @@
         private ColorDialog colorDialog1;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Timer rotationTimer;
     }
 }

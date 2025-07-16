@@ -31,6 +31,14 @@ namespace summer_practice
             btnChangeColor.Click += btnColor_Click;
             btnSaveState.Click += btnSave_Click;
             btnLoadState.Click += btnLoad_Click;
+
+            rotationTimer.Interval = 100; // мс
+            rotationTimer.Tick += (s, e) =>
+            {
+                renderer.RotatePlanet(1); // на 1 градус
+                pictureBoxPlanet.Invalidate();
+            };
+            rotationTimer.Start();
         }
 
         private void SetCurrentAddType(string type)
@@ -45,14 +53,37 @@ namespace summer_practice
 
         private void pictureBoxPlanet_MouseClick(object sender, MouseEventArgs e)
         {
-            var obj = ObjectFactory.Create(currentAddType, e.Location);
-            if (obj != null)
+            Point center = new(pictureBoxPlanet.Width / 2, pictureBoxPlanet.Height / 2);
+            int radius = Math.Min(pictureBoxPlanet.Width, pictureBoxPlanet.Height) / 3;
+
+            // –азница координат
+            double dx = e.X - center.X;
+            double dy = e.Y - center.Y;
+            double distance = Math.Sqrt(dx * dx + dy * dy);
+
+            // ”словие: клик примерно по окружности
+            if (Math.Abs(distance - radius) <= 20) // можно настроить допуск
             {
-                renderer.Objects.Add(obj);
-                pictureBoxPlanet.Invalidate();
-                UpdateLabels();
+                // ¬ычисл€ем угол
+                double angle = Math.Atan2(dy, dx);
+
+                // Ќаходим точку на окружности по этому углу
+                Point posOnCircle = new(
+                    center.X + (int)(radius * Math.Cos(angle)),
+                    center.Y + (int)(radius * Math.Sin(angle))
+                );
+
+                var obj = ObjectFactory.Create(currentAddType, posOnCircle);
+                if (obj != null)
+                {
+                    renderer.Objects.Add(obj);
+                    pictureBoxPlanet.Invalidate();
+                    UpdateLabels();
+                }
             }
         }
+
+
 
         private void btnColor_Click(object sender, EventArgs e)
         {
