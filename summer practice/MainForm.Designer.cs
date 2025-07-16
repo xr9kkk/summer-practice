@@ -90,7 +90,7 @@
             // 
             btnAddAntenna.Location = new Point(618, 258);
             btnAddAntenna.Name = "btnAddAntenna";
-            btnAddAntenna.Size = new Size(75, 23);
+            btnAddAntenna.Size = new Size(75, 40);
             btnAddAntenna.TabIndex = 4;
             btnAddAntenna.Text = "add antenna";
             btnAddAntenna.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             // 
             btnChangeColor.Location = new Point(340, 500);
             btnChangeColor.Name = "btnChangeColor";
-            btnChangeColor.Size = new Size(75, 23);
+            btnChangeColor.Size = new Size(75, 41);
             btnChangeColor.TabIndex = 9;
             btnChangeColor.Text = "change color";
             btnChangeColor.UseVisualStyleBackColor = true;
